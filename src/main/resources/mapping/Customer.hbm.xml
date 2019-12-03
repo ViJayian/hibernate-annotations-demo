@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--   This mapping demonstrates content-based discrimination for the  table-per-hierarchy mapping strategy, using a formula  discriminator.-->
+
+<hibernate-mapping package="pojo">
+    <!--类名为User，表名也为User-->
+    <class name="Customer" table="customer">
+
+        <!--主键映射，属性名为id，列名也为id-->
+        <id name="cid" column="cid">
+            <!--根据底层数据库主键自动增长-->
+            <generator class="native"/>
+        </id>
+        <!--非主键映射，属性和列名一一对应-->
+        <property name="custName" column="custName"/>
+        <property name="mobile" column="mobile"/>
+        <!--set name属性值，实体中set集合名称-->
+        <!-- set标签上进行配置级联关系 -->
+        <!--
+            inverse：false默认值，不放弃维护
+                    true，放弃维护外键关系
+        -->
+        <!--batch-size 批量抓取策略-->
+        <set name="linkManSet" cascade="save-update,delete" inverse="true" batch-size="10">
+            <!--
+                一对多，外键维护关系
+                hibernate机制，双向维护外键，在一的一方和多的一方都要维护外键
+            -->
+            <!-- 外键名称 -->
+            <key column="clid"></key>
+            <!-- 关联实体类路径 -->
+            <one-to-many class="LinkMan"></one-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

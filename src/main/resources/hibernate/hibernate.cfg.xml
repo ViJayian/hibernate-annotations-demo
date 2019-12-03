@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<!--
+	Hibernate配置文件主要用来配置数据库连接以及Hibernate运行时所需的各个属性的值
+ -->
+
+<hibernate-configuration>
+
+    <session-factory>
+        <!-- 数据库连接设置 -->
+        <!-- 配置数据库JDBC驱动 -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <!-- 配置数据库连接URL -->
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate</property>
+        <!-- 配置数据库用户名 -->
+        <property name="hibernate.connection.username">root</property>
+        <!-- 配置数据库密码 -->
+        <property name="hibernate.connection.password">root</property>
+        <!-- 配置JDBC内置连接池 -->
+        <property name="connection.pool_size">1</property>
+        <!-- 配置数据库方言 -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!-- 输出运行时生成的SQL语句 -->
+        <property name="show_sql">true</property>
+        <!-- 2.2 格式化sql -->
+        <property name="hibernate.format_sql">true</property>
+        <!-- 2.3 自动建表  -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!--将Session绑定到当前线程中-->
+        <property name="hibernate.current_session_context_class">thread</property>
+        <!-- 列出所有的映射文件 -->
+        <mapping resource="mapping/User.hbm.xml" />
+        <mapping resource="mapping/Customer.hbm.xml"/>
+        <mapping resource="mapping/LinkMan.hbm.xml"/>
+        <mapping resource="mapping/UserInfo.hbm.xml"/>
+        <mapping resource="mapping/Role.hbm.xml"/>
+    </session-factory>
+
+</hibernate-configuration>

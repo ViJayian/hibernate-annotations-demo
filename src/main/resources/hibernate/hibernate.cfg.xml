@@ -37,6 +37,10 @@
         <mapping resource="mapping/LinkMan.hbm.xml"/>
         <mapping resource="mapping/UserInfo.hbm.xml"/>
         <mapping resource="mapping/Role.hbm.xml"/>
+
+        <!-- 注解映射-->
+        <mapping class="annotation.Student"/>
+        <mapping class="annotation.Teacher"/>
     </session-factory>
 
 </hibernate-configuration>
